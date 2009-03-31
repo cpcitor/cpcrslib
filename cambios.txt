@@ -1,0 +1,62 @@
+Cambios:
+
+30.03.2009
+*cpc_ClrScr: Rellena la pantalla con la tinta 0
+*cpc_DisableFirmware: Desactiva el salto de las interrupciones al firmware.
+*cpc_PrintGphStrStd: Rutina para escribir en modo 0 caracteres de 8x8 pixels.
+*cpc_PrintGphStrStdXY: Rutina para escribir en modo 0 caracteres de 8x8 pixels.
+*cpc_ShowTileMap: Quitada la desactivación de interrupciones que tenía.
+*cpc_RRI, cpc_RLI: Corregido un bug al usar un registro índice.
+*cpc_ScanKeyboard: Rutina nueva para escanear todo el teclado, tomada de los artículos de programación de teclado de CPCWiki
+*cpc_TestKeyF: Nueva rutina para usar después de cpc_ScanKeyboard,comprueba si una tecla se ha pulsado. Si se van a probar 3 ó más teclas es más rápida que la rutina anterior cpc_TestKey
+
+
+23.03.2009
+*cpc_RRI: <- moves a screen rectangle une byte to the left, most left byte goes to the right side (no bytes lost)
+*cpc_RLI: -> moves a screen rectangle une byte to the rightmost left byte goes to the left side (no bytes lost)
+
+20.03.2009
+*cpc_TouchTiles: Rutina nueva para marcar un recuadro de tiles como tocado
+
+
+23.02.2009
+*cpc_GetTiles: Rutina nueva que captura un área de tiles y lo guarda en un buffer.
+*cpc_PutTiles: Rutina nueva que envía desde un buffer un área de tiles al mapa de tiles.
+
+22.02.2009
+*cpc_UpdScr: Se ha optimizado el código para que sea más rápida, aunque ahora ocupa más.
+*cpc_PutCpTileMapo2b: Rutina nueva para dibujar sprites compilados en el buffer del mapa de tiles. 
+
+20.02.2009
+*En las rutinas relacionadas con el ancho del mapa de tiles se da la opción de utilizar una rutina de multiplicación personalizada antes de compilar la librería, de este modo se mejora la velocidad de operación. En caso de no personalizar esta rutina se usa la rutina de multiplicación genérica.
+
+19.02.2009
+*cpc_PutSpTileMap: Optimizado el código de búsqueda de tiles tocados por un sprite: Más corto y rápido.
+
+16.02.2009
+*cpc_PutTrSpriteTileMap2b: Rutina nueva similar a cpc_PutTrSpTileMap2b pero sin hacer el cálculo interno de la posición en el superbuffer. Por eso requiere utilizar cpc_SpUpdX y cpc_SpUpdY para actualizar la posición del sprite. O hacerlo del modo habitual pero ejecutandi luego cpc_SuperbufferAddress() después de actualizar la posición.
+*cpc_UpdateTileMap: Se ha actualizado para incluir las rutinas cpc_PutTrSpTileMap2 y cpc_PutTrSpriteTileMap2.
+
+
+11.02.2009
+*cpc_ScrollLeft0, cpc_ScrollLeft, cpc_ScrollRight0, cpc_ScrollRight
+Rutinas nuevas (beta) para hacer scroll horizontal por software en el mapa de tiles.
+
+09.02.2009
+*cpc_PutTrSpTileMap2b: Dibuja un sprite en el mapa de tiles teniendo en cuenta que uno de los colores es transparente. El color transparente se define en tiempo de compilación como mascara1 y mascara2
+
+16.01.2009
+*cpc_TestKey
+Optimizado el código, ahora algo más pequeño y rápido (5 bytes menos).
+	
+*cpc_RedefineKey
+Optimizado el código, ahora algo más pequeño y rápido (30 bytes menos).
+
+*cpc_AnyKeyPressed
+Reescrita entera, mucho más corta y encima funciona... la anterior no funcionaba.
+
+*cpc_SetBorder
+Cambiada la forma de llamar para ahorrar 4 bytes. 
+
+*cpc_InitTileMap
+Cambiada la forma de llamar para ahorrar 12 bytes. 
