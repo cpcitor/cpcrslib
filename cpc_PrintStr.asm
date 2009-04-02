@@ -21,7 +21,7 @@ XLIB cpc_PrintStr
 	
 	.bucle_imp_cadena
 		ld a,(hl)	
-		cp 0
+		or a ;		cp 0
 		jr z,salir_bucle_imp_cadena
 		call $bb5a
 		inc hl

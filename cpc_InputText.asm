@@ -31,7 +31,8 @@ LIB cpc_TestKeyboard
 
 ;_A_devuelto
 	pop bc
-	cp 0 ;0 no se ha pulsado tecla...
+	;cp 0 ;0 no se ha pulsado tecla...
+	or a
 	jr nz,key_pressed	;no se ha pulsado nada??
 ; A tiene el byte (<>0)
 ; B tiene la linea

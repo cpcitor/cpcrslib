@@ -27,7 +27,7 @@ XREF ancho_pantalla_bytes
 	ld a,(ix+0)
 	;ld ,(ix+1)
 	;A=x value
-	cp 0
+	or a ;	cp 0
 	ret z	;si inc=0
 	
 		

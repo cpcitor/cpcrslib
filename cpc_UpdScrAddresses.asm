@@ -26,12 +26,12 @@ inc ix
 inc ix
 inc a
 cp 20 
-ret z
-jr bucle_pos
 
+jp nz, bucle_pos
+ret 
 
 .mult
 dec a
 ret z
 add hl,bc
-jr mult
+jp mult

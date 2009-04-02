@@ -55,7 +55,7 @@ ret
 ;; marcará el color con que se imprime
 .color_uso
 ld a,1
-cp 0
+or a ; cp 0
 jp z,color0
 cp 1
 jp z,color1
@@ -143,7 +143,7 @@ ld a,(first_char8)
 ld b,a		;resto 48 para saber el número del caracter (En ASCII 0=48)
 
 ld a,(hl)
-cp 0
+or a ;cp 0
 ret z
 sub b
 ld bc,cpc_Chars8	;apunto a la primera letra

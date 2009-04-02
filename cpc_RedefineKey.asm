@@ -62,7 +62,7 @@ XREF  tabla_teclas
 	
 	call cpc_TestKeyboard					;en A vuelve los valores de la linea
 	
-	CP 0
+	or a ;	CP 0
 	Jr NZ, tecla_pulsada					; retorna si no se ha pulsado ninguna tecla
 	POP AF
 	INC A

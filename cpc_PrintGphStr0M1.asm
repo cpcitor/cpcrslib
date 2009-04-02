@@ -99,7 +99,7 @@ ld a,(first_char)
 ld b,a		;resto 48 para saber el número del caracter (En ASCII 0=48)
 
 ld a,(hl)
-cp 0
+or a ;cp 0
 ret z
 sub b
 ld bc,cpc_Chars	;apunto a la primera letra
@@ -259,7 +259,7 @@ ld c,(hl)
 ;lo roto 4-b veces
 ld a,4
 sub b
-cp 0
+or a ;cp 0
 jp z,_sin_rotar
 .rotando
 srl c

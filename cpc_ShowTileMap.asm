@@ -22,7 +22,7 @@ XREF posiciones_pantalla
 
 ; En HL viene el ancho a usar
 ld a,l
-cp 0
+or a ;cp 0
 jp z, cont_normal
 ld (otro_ancho+1),a
 ex de,hl
