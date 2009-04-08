@@ -115,14 +115,15 @@ add hl,bc	;ahora HL apunta a los datos de la letra correspondiente
 
 call escribe_letra
 ld hl,(direcc_destino)
-inc hl
 
-ld (direcc_destino),hl
 ld de,letra_decodificada
 ;ld A,8	;alto  
 call cpc_PutSp0
 
+ld hl,(direcc_destino)
+inc hl
 
+ld (direcc_destino),hl
 pop hl
 inc hl
 jp bucle_texto0
