@@ -18,6 +18,7 @@ XREF posiciones_pantalla
 
 
 
+
 .cpc_ShowTileMap
 
 ; En HL viene el ancho a usar
@@ -34,6 +35,9 @@ ld (ancho_mostrable+1),a
 .cont_normal
 	xor a
 	ld (contador_tiles),a
+;Se busca el número de tiles en pantalla	
+	ld hl,(ntiles)
+	ld (contador_tiles2),hl
 	ld hl,pantalla_juego
 	call transferir_pantalla_a_superbuffer
 	
@@ -72,11 +76,25 @@ ld (ancho_mostrable+1),a
 	EX DE,HL	
 	PUSH HL
 	call transferir_map_sbuffer		;DE origen HL destino
+	
+		; Inicio Mod. 29.06.2009
+; Se cambia la forma de controlar el final de datos de tiles. El $FF ahora sí que se podrá utilizar.
+	ld HL,(contador_tiles2)
+	dec HL
+	LD (contador_tiles2),HL	
+	LD A,H
+	OR L
+	;ret z
+	jp z, ret2	
+; Fin    Mod. 29.06.2009
 	POP HL
 	INC IX	;Siguiente byte
-	LD A,(IX+0)
-	CP $FF	;El fin de los datos se marca con $FF, no hay un tile que sea $FF
-	RET Z
+	
+
+
+;	LD A,(IX+0)
+;	CP $FF	;El fin de los datos se marca con $FF, no hay un tile que sea $FF
+	;RET Z
 	EX DE,HL
 	LD A,(contador_tiles)
 	CP ancho_pantalla_bytes/2-1 ;31	;son 32 tiles de ancho
@@ -98,9 +116,17 @@ ld (ancho_mostrable+1),a
 	JP bucle_dibujado_fondo
 
 .contador_tiles defb 0	
+.contador_tiles2 defw 0	
+; Ahora se puede usar el tile 255
+.ntiles defw  ( alto_pantalla_bytes / 8 ) * ( ancho_pantalla_bytes / 2	)
 	
-	
-	
+.ret2
+;Se busca el número de tiles en pantalla	
+	;ld hl,(ntiles)
+	;ld (contador_tiles2),hl
+	pop hl
+ret	
+
 
 .transferir_map_sbuffer	
 
