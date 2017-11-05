@@ -1,6 +1,6 @@
 .module utils
 
-.include "firmware.s"
+.include "Firmware.s"
 
 .globl 	_cpc_EnableFirmware
 

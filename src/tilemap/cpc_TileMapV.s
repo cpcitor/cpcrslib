@@ -1,7 +1,7 @@
 .module tilemap
 
-.include "tilemap.s"
-.include "tilemapC.h"
+.include "TileMap.s"
+.include "TileMapC.h"
 
 
 ; Define your tile data at the end of this file
